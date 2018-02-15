@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpInterceptorService } from '../../core/http-interceptor.service';
 import { CookieService } from 'ngx-cookie-service';
 
+
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
@@ -12,16 +13,19 @@ export class BookListComponent implements OnInit {
   private params;
   private bookList;
   private id;
+  private pageNo;
 
   constructor(private http: HttpInterceptorService,private _cookie: CookieService) {
     this.bookName = 'harry potter';
     this.params = {
       q : 'harry potter',
-      maxResults:25,
+      maxResults:20,
       orderBy:'relevance',
       printType:'books',
       startIndex:0
-    }
+    };
+    this.bookList = [];
+    this.pageNo = 0;
    }
 
   ngOnInit() {
@@ -30,8 +34,11 @@ export class BookListComponent implements OnInit {
 
   fetchBooks(){
     this.params.q = this.bookName;
+    this.params.startIndex = this.pageNo * 20;
+    
     this.http.getDataWithParams('https://www.googleapis.com/books/v1/volumes', this.params).subscribe( (res) => {
-      this.bookList = res.items;
+      this.bookList.push(...res.items);
+      this.pageNo++;
     },
   (err) => {
 
@@ -46,5 +53,14 @@ export class BookListComponent implements OnInit {
       
     }
 
+  }
+
+  onScroll(){
+    this.fetchBooks();
+  }
+  search(){
+    this.bookList = [];
+    this.pageNo = 0;
+    this.fetchBooks();
   }
 }
