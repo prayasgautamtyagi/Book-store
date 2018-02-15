@@ -1,31 +1,35 @@
 <div class="container">
 
     <div class="searchBox">
-        <form (submit)="fetchBooks()" #searchForm>
+        <form (submit)="search()" #searchForm>
             <input type="text" name="bookName" placeholder="  Search for a book...." [(ngModel)]="bookName">
             <img src="../../../assets/search.png" alt=" search ">
         </form>
     </div>
-    <ul class="bookList ">
-        <li *ngFor="let book of bookList; let i=index ">
-            <div class="bookImage ">
-                <img height="60" width="50" [src]="book.volumeInfo.imageLinks.smallThumbnail " alt=" ">
-            </div>
-            <div class="bookDetails ">
-                <p class="para"><a [routerLink]="['/book',book.id]">{{book.volumeInfo?.title}}</a></p>
-                <p>{{book.volumeInfo?.authors && book.volumeInfo?.authors[0]}}</p>
-                <p>{{book.volumeInfo?.publisher}}</p>
-            </div>
-            <div class="bookPrice ">
-                <p class="para">₹{{book?.saleInfo?.retailPrice?.amount || 'NA'}}</p>
-                <p>{{book.volumeInfo?.categories || 'No Category'}}</p>
-                <p>{{(book.volumeInfo?.averageRating || '0') +'('+(book.volumeInfo?.ratingsCount || '0')+')'}}</p>
-            </div>
-            <div class="bookmark ">
-                <i class="fa fa-bookmark" (click)="bookmarkIt(book.id); book.bookmarked = !!!book.bookmarked" [ngClass]="{'bookmarked':book.bookmarked}"></i>
-            </div>
 
-        </li>
-    </ul>
+    <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false">
+        <ul class="bookList ">
+            <li *ngFor="let book of bookList; let i=index ">
+                <div class="bookImage ">
+                    <img height="60" width="50" [src]="book.volumeInfo.imageLinks?.smallThumbnail " alt=" ">
+                </div>
+                <div class="bookDetails ">
+                    <p class="para"><a [routerLink]="['/book',book.id]">{{book.volumeInfo?.title}}</a></p>
+                    <p>{{book.volumeInfo?.authors && book.volumeInfo?.authors[0]}}</p>
+                    <p>{{book.volumeInfo?.publisher}}</p>
+                </div>
+                <div class="bookPrice ">
+                    <p class="para">₹{{book?.saleInfo?.retailPrice?.amount || 'NA'}}</p>
+                    <p>{{book.volumeInfo?.categories || 'No Category'}}</p>
+                    <p>{{(book.volumeInfo?.averageRating || '0') +'('+(book.volumeInfo?.ratingsCount || '0')+')'}}</p>
+                </div>
+                <div class="bookmark ">
+                    <i class="fa fa-bookmark" (click)="bookmarkIt(book.id); book.bookmarked = !!!book.bookmarked" [ngClass]="{'bookmarked':book.bookmarked}"></i>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+
 
 </div>

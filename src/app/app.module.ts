@@ -11,6 +11,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { CookieService } from 'ngx-cookie-service';
     HttpModule,
     FormsModule,
     CommonModule,
+    InfiniteScrollModule,
     AppRoutingRoutingModule
   ],
   providers : [HttpInterceptorService, CookieService],
