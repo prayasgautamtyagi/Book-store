@@ -9,7 +9,8 @@
         </div>
 
         <div class="bookDescription">
-            <img src="../../../assets/bookmark.png" alt="Bookmark" (click)="bookmarkIt()">
+            <i class="fa fa-bookmark" (click)="bookmarkIt()" [ngClass]="{'bookmarked':bookmarked}"></i>
+
             <p class="p1">{{book.volumeInfo.title}}</p>
             <p class="p2">₹{{book?.saleInfo?.retailPrice?.amount || 'NA'}}</p>
             <div class="description" [ngClass]="{'show-more':readMore}">

@@ -38,13 +38,14 @@ export class BookListComponent implements OnInit {
   });
   }
   bookmarkIt(id) {
-    let bookmarks = this._cookie.get('bookmarks') ? JSON.parse(this._cookie.get('bookmarks')) : [];
-    if (bookmarks.indexOf(this.id) === -1) {
-      bookmarks.push(this.id);
-      this._cookie.set('bookmarks', JSON.stringify(bookmarks));
+    let bookmarks = this._cookie.check('bookmarks') ? JSON.parse(this._cookie.get('bookmarks')) : [];
+    let index = bookmarks.indexOf(id);
+    if (index === -1) {
+      bookmarks.push(id);
     }else{
-      
+      bookmarks.splice(index,1);
     }
+    this._cookie.set('bookmarks', JSON.stringify(bookmarks));
 
   }
 }

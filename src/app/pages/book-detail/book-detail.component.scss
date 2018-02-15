@@ -71,10 +71,15 @@
             .p3 {
                 font-size: 1.2rem;
             }
-            img {
+            i {
                 height: 50px;
                 width: 50px;
                 float: right;
+                font-size: 40px;
+                color: gainsboro;
+                &.bookmarked {
+                    color: greenyellow;
+                }
             }
             table {
                 width: 100%;

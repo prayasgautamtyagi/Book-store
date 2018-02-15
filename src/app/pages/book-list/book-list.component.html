@@ -22,7 +22,7 @@
                 <p>{{(book.volumeInfo?.averageRating || '0') +'('+(book.volumeInfo?.ratingsCount || '0')+')'}}</p>
             </div>
             <div class="bookmark ">
-                <img src="../../../assets/bookmark.png " alt="Bookmark" (click)="bookmarkIt('book.id')">
+                <i class="fa fa-bookmark" (click)="bookmarkIt(book.id); book.bookmarked = !!!book.bookmarked" [ngClass]="{'bookmarked':book.bookmarked}"></i>
             </div>
 
         </li>

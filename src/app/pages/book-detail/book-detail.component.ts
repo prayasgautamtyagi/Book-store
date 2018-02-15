@@ -13,6 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class BookDetailComponent implements OnInit {
   private book;
   private id;
+  private bookmarked;
   constructor(
     private http: HttpInterceptorService,
     private _router: Router,
@@ -26,6 +27,11 @@ export class BookDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    let bookmarks = this._cookie.get('bookmarks') ? JSON.parse(this._cookie.get('bookmarks')) : [];
+    let index = bookmarks.indexOf(this.id);
+    if(bookmarks.indexOf(this.id) > -1){
+      this.bookmarked = true;
+    }
     this.fetchBook();
   }
   OnBack(): void {
@@ -40,10 +46,16 @@ export class BookDetailComponent implements OnInit {
 
   bookmarkIt() {
     let bookmarks = this._cookie.get('bookmarks') ? JSON.parse(this._cookie.get('bookmarks')) : [];
-    if (bookmarks.indexOf(this.id) === -1) {
+    let index = bookmarks.indexOf(this.id);
+    if (index === -1) {
+      this.bookmarked = true;
       bookmarks.push(this.id);
-      this._cookie.set('bookmarks', JSON.stringify(bookmarks));
+    }else{
+      this.bookmarked = false;
+      bookmarks.splice(index,1);
     }
+    this._cookie.set('bookmarks', JSON.stringify(bookmarks));
+    
 
   }
 
