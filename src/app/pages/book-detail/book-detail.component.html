@@ -1,0 +1,52 @@
+<div class="container" *ngIf="book">
+    <div class="BackBtn">
+        <a (click)="OnBack()"><img src="../../../assets/backBtn.png" alt="Back"></a>
+    </div>
+    <div class="bookDetails">
+        <div class="bookImage">
+            <img [src]="book.volumeInfo.imageLinks.thumbnail" alt="">
+            <button>Buy Now</button>
+        </div>
+
+        <div class="bookDescription">
+            <img src="../../../assets/bookmark.png" alt="Bookmark" (click)="bookmarkIt()">
+            <p class="p1">{{book.volumeInfo.title}}</p>
+            <p class="p2">₹{{book?.saleInfo?.retailPrice?.amount || 'NA'}}</p>
+            <div class="description" [ngClass]="{'show-more':readMore}">
+                <p class="p3">{{book.volumeInfo.description}}</p>
+                <button (click)="readMore = !!!readMore">Read {{readMore? 'less...':'more...'}}</button>
+            </div>
+            <table>
+                <thead>
+                    <p>Specifications</p>
+                </thead>
+                <tr>
+                    <td class="tableData">Authors</td>
+                    <td>
+                        <p>{{book.volumeInfo.authors}}</p>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Publisher</td>
+                    <td>{{book.volumeInfo.publisher}}</td>
+                </tr>
+                <tr>
+                    <td>Categories</td>
+                    <td>
+                        <p *ngFor='let category of book.volumeInfo.categories'>{{category}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pages</td>
+                    <td>{{book.volumeInfo.pageCount}}</td>
+                </tr>
+                <tr>
+                    <td>ISBN Number</td>
+                    <td>{{book.volumeInfo.industryIdentifiers[0].identifier}}</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
