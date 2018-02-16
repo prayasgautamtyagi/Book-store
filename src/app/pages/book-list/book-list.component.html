@@ -11,7 +11,7 @@
         <ul class="bookList ">
             <li *ngFor="let book of bookList; let i=index ">
                 <div class="bookImage ">
-                    <img height="60" width="50" [src]="book.volumeInfo.imageLinks?.smallThumbnail " alt=" ">
+                    <img [src]="book.volumeInfo.imageLinks?.smallThumbnail " alt=" ">
                 </div>
                 <div class="bookDetails ">
                     <p class="para"><a [routerLink]="['/book',book.id]">{{book.volumeInfo?.title}}</a></p>

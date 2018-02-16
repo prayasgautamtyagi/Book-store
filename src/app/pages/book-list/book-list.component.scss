@@ -3,6 +3,7 @@
     border: 1px solid black;
     margin: 0 auto;
     font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
     .searchBox {
         width: 100%;
         background-color: rgb(152, 201, 185);
@@ -22,15 +23,20 @@
     .search-results {
         height: 50rem;
         overflow-y: scroll;
+        width: 100%;
         .bookList {
             width: 100%;
             li {
-                padding: 1%;
+                padding: 10px;
                 display: inline-block;
                 border-top: 1px solid black;
                 width: 98%;
                 .bookImage {
                     width: 10%;
+                    img {
+                        width: 50px;
+                        height: 60px;
+                    }
                 }
                 .bookDetails {
                     width: 45%;
@@ -41,12 +47,7 @@
                 .bookmark {
                     width: 20%;
                     i {
-                        height: 50px;
-                        width: 50px;
-                        display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                        padding-bottom: 5px;
+                        margin-left: 100px;
                         color: gainsboro;
                         font-size: 36px;
                         &.bookmarked {
@@ -56,44 +57,18 @@
                 }
                 div {
                     display: inline-block;
-                    border-top: 1px solid black;
-                    width: 98%;
-                    .bookImage {
-                        width: 10%;
-                    }
-                    .bookDetails {
-                        width: 45%;
-                    }
-                    .bookPrice {
-                        width: 20%;
-                    }
-                    .bookmark {
-                        width: 20%;
-                        img {
-                            height: 50px;
-                            width: 50px;
-                            display: block;
-                            margin-left: auto;
-                            margin-right: auto;
-                            padding-bottom: 5px;
-                        }
-                    }
-                    div {
-                        display: inline-block;
-                        text-align: left;
-                        font-family: Arial, Helvetica, sans-serif;
-                        p {
-                            color: rgb(136, 136, 136);
-                            a {
-                                text-decoration: none;
-                                color: black;
-                            }
-                        }
-                        .para {
-                            font-size: 1.2rem;
-                            font-weight: bold;
+                    text-align: left;
+                    p {
+                        color: rgb(136, 136, 136);
+                        a {
+                            text-decoration: none;
                             color: black;
                         }
+                    }
+                    .para {
+                        font-size: 1.2rem;
+                        font-weight: bold;
+                        color: black;
                     }
                 }
             }
